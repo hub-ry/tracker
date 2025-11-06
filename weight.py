@@ -3,6 +3,12 @@ def add_weight(date, weight):
     file.write(f'{date}, {weight}\n')
   print('\nadded!\n')
 
+def stats():
+  with open('weightpy.txt', 'r') as file:
+    lines = file.readlines()
+
+  for line in lines:
+    parts = line.strip().split(",")
 
 
 def main():
@@ -24,8 +30,7 @@ def main():
       #print the list
       continue
     if (choice == 4): 
-      print('hi')
-      #call fucntion that goes crazy and calculates stats
+      stats()
       continue
     if (choice == 5):
       break
