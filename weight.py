@@ -23,7 +23,7 @@ def add_weight(date, weight):
     file.write(f'{date}, {weight}\n')
   print('\nadded!\n')
 
-def stats():
+def print_record():
   with open('weightpy.txt', 'r') as file:
     lines = file.readlines()
 
@@ -78,11 +78,13 @@ def main():
         modify_entry(date, modify_type)
       continue
     if (choice == 3):
-      show_graph()
-      #print the list
+      view_type = int(input('1. Printed List\n2. Chart\n'))
+      if view_type == 1:
+         print_record()
+      if view_type == 2:
+        show_graph()
       continue
     if (choice == 4): 
-      stats()
       continue
     if (choice == 5):
       break
