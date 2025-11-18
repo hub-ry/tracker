@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
+from datetime import datetime
 
+# this function uses matplotlib to show a graph of weight
 def show_graph():
     dates = []
     weights = []
@@ -18,11 +20,13 @@ def show_graph():
     plt.tight_layout()
     plt.show()
 
+# this function adds a new weight at the next line with the given date and weight
 def add_weight(date, weight):
   with open('weightpy.txt', 'a') as file:
     file.write(f'{date}, {weight}\n')
   print('\nadded!\n')
 
+# this function prints the file into terminal
 def print_record():
   with open('weightpy.txt', 'r') as file:
     lines = file.readlines()
@@ -30,6 +34,7 @@ def print_record():
   for line in lines:
     print(line)
 
+# this function modifies an entry
 def modify_entry(date, modify_type):
     with open('weightpy.txt', 'r') as file:
         lines = file.readlines()
@@ -42,7 +47,7 @@ def modify_entry(date, modify_type):
         if d == date:
             found = True
             if modify_type == 1:
-                continue  # remove
+                continue 
             elif modify_type == 2:
                 new_date = input("new date: ")
                 new_lines.append(f"{new_date}, {w}\n")
@@ -61,6 +66,44 @@ def modify_entry(date, modify_type):
         file.writelines(new_lines)
 
     print("\nmodified!\n")
+
+# this function calculates specific values to track progress
+def stats():
+    records = []
+    with open('weightpy.txt', 'r') as file:
+        lines = file.readlines()
+
+    for line in lines:
+        date_str, weight_str = line.strip().split(',')
+        date = datetime.strptime(date_str.strip(), "%m-%d-%y")
+        weight = float(weight_str.strip())
+        records.append((date, weight))
+    
+    if len(records) < 2:
+        print('not enough records')
+        return
+
+    weekly_rates = []
+
+    for i in range(len(records) - 1):
+        d1, w1 = records[i]
+        d2, w2 = records[i + 1]
+        delta_weight = w2 - w1
+        delta_days = (d2 - d1).days
+        if delta_days == 0:
+            continue
+        weeks = delta_days / 7
+        weekly_rate = delta_weight / weeks
+        weekly_rates.append(weekly_rate)
+
+    if not weekly_rates:
+        print('no valid intervals')
+        return
+
+    avg_of_avgs = sum(weekly_rates) / len(weekly_rates)
+    print(f"Average of weekly averages: {avg_of_avgs:.2f} lbs/week")
+
+
 
 def main():
   while (1):
@@ -85,6 +128,7 @@ def main():
         show_graph()
       continue
     if (choice == 4): 
+      stats()
       continue
     if (choice == 5):
       break
