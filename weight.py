@@ -1,5 +1,12 @@
 import matplotlib.pyplot as plt
 from datetime import datetime
+import requests
+url = "http://127.0.0.1:8000/get_weights"
+response = requests.get(url)
+weights = response.json()["weights"]
+
+for w in weights:
+    print(w["date"], w["weight"])
 
 # this function uses matplotlib to show a graph of weight
 def show_graph():
