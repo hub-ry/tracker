@@ -1,23 +1,24 @@
 import matplotlib.pyplot as plt
 from datetime import datetime
-import requests
-url = "http://127.0.0.1:8000/get_weights"
-response = requests.get(url)
-weights = response.json()["weights"]
 
-for w in weights:
-    print(w["date"], w["weight"])
 
 # this function uses matplotlib to show a graph of weight
+
 def show_graph():
     dates = []
     weights = []
 
-    with open('weightpy.txt', 'r') as file:
+    with open('weight.txt', 'r') as file:
         for line in file:
-            date, weight = line.strip().split(',')
-            dates.append(date)
-            weights.append(float(weight))
+            if "," not in line:
+                continue
+            date_str, weight_str = [x.strip() for x in line.split(",")]
+            dates.append(date_str)
+            weights.append(float(weight_str))
+
+    if not dates:
+        print("No data to graph")
+        return
 
     plt.plot(dates, weights)
     plt.xlabel("Date")
@@ -27,15 +28,16 @@ def show_graph():
     plt.tight_layout()
     plt.show()
 
+
 # this function adds a new weight at the next line with the given date and weight
 def add_weight(date, weight):
-  with open('weightpy.txt', 'a') as file:
+  with open('weight.txt', 'a') as file:
     file.write(f'{date}, {weight}\n')
   print('\nadded!\n')
 
 # this function prints the file into terminal
 def print_record():
-  with open('weightpy.txt', 'r') as file:
+  with open('weight.txt', 'r') as file:
     lines = file.readlines()
 
   for line in lines:
@@ -43,7 +45,7 @@ def print_record():
 
 # this function modifies an entry
 def modify_entry(date, modify_type):
-    with open('weightpy.txt', 'r') as file:
+    with open('weight.txt', 'r') as file:
         lines = file.readlines()
 
     new_lines = []
@@ -69,7 +71,7 @@ def modify_entry(date, modify_type):
         print("\ndate not found\n")
         return
 
-    with open('weightpy.txt', 'w') as file:
+    with open('weight.txt', 'w') as file:
         file.writelines(new_lines)
 
     print("\nmodified!\n")
@@ -77,7 +79,7 @@ def modify_entry(date, modify_type):
 # this function calculates specific values to track progress
 def stats():
     records = []
-    with open('weightpy.txt', 'r') as file:
+    with open('weight.txt', 'r') as file:
         lines = file.readlines()
 
     for line in lines:
@@ -141,6 +143,10 @@ def main():
       break
     else:
       print('invalid choice')
+
+
+
+      
 if __name__ == "__main__":
     main()
  
