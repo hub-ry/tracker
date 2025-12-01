@@ -5,6 +5,17 @@ import os
 app = Flask(__name__)
 FILE = "weight.txt"
 
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "message": "Weight Tracker API",
+        "version": "2.0",
+        "endpoints": {
+            "add_weight": {"method": "POST", "url": "/add_weight", "description": "Add a new weight entry"},
+            "get_weights": {"method": "GET", "url": "/get_weights", "description": "Get all weight entries"}
+        }
+    })
+
 #define URL endpoint, path to add_weight, POST is to send data
 @app.route("/add_weight", methods=["POST"]) 
 def add_weight():
@@ -33,4 +44,4 @@ def get_weights():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.run(host="0.0.0.0", port=5000)
