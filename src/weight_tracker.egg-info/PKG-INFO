@@ -9,6 +9,7 @@ Project-URL: Repository, https://github.com/hub-ry/tracker.git
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 Requires-Dist: flask>=2.0
+Requires-Dist: gunicorn>=23.0.0
 Requires-Dist: matplotlib>=3.5
 Provides-Extra: dev
 Requires-Dist: black>=23.0; extra == "dev"
