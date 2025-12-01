@@ -21,6 +21,9 @@ dependencies = [
 Homepage = "https://github.com/hub-ry/tracker"
 Repository = "https://github.com/hub-ry/tracker.git"
 
+[project.scripts]
+weight-cli = "weight_tracker.cli:main"
+
 [project.optional-dependencies]
 dev = [
   "black>=23.0",
