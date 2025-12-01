@@ -1,0 +1,6 @@
+flask>=2.0
+matplotlib>=3.5
+
+[dev]
+black>=23.0
+pytest>=7.0

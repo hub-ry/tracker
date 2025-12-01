@@ -14,7 +14,7 @@ authors = [
 ]
 dependencies = [
   "flask>=2.0",
-  "matplotlib>=3.5"
+  "matplotlib>=3.5",
 ]
 
 [project.urls]
