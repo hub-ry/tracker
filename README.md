@@ -11,3 +11,7 @@ Version II served as my introduction to **Flask**. I learned the basic **POST** 
 
 #### Version 2.1 - CLI - API (Flask) - Replit
 It was apparent I needed a hosting platform. I used **Replit** to import by github repository and host it for free. 
+Replit (at least my free version) does not automatically sync. I have to push the updated .txt file to GitHub on occasion. 
+
+
+#### Coming... Version 2.2 - CLI - API (Flask) - Replit - SQLite
