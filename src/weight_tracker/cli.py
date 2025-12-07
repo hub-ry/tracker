@@ -88,5 +88,6 @@ def main():
 if __name__ == "__main__":
     try:
         main()
+    # successfully escapes ^c
     except KeyboardInterrupt:
         print("\n\nGoodbye!")
