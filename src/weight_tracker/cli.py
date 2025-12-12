@@ -13,14 +13,15 @@ def show_graph():
             if "," not in line:
                 continue
             date_str, weight_str = [x.strip() for x in line.split(",")]
-            dates.append(date_str)
+            dates.append(datetime.strptime(date_str, "%Y-%m-%d"))
             weights.append(float(weight_str))
 
     if not dates:
         print("No data to graph")
         return
 
-    plt.plot(dates, weights)
+    plt.figure(figsize=(10, 6))
+    plt.plot(dates, weights, marker='o')
     plt.xlabel("Date")
     plt.ylabel("Weight (lbs)")
     plt.title("Weight Over Time")
