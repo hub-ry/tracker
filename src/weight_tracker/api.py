@@ -44,4 +44,4 @@ def get_weights():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="100.89.197.38", port=5000)
