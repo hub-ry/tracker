@@ -15,3 +15,10 @@ Replit (at least my free version) does not automatically sync. I have to push th
 
 
 #### Coming... Version 2.2 - CLI - API (Flask) - Replit - SQLite
+
+
+
+
+### NOT UNFINISHED
+
+**Woah, we actually got better at programming!** This project was completed with a clearer vision under the name protocol: [here](https://github.com/hub-ry/protocol)
